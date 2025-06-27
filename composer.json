@@ -1,0 +1,59 @@
+{
+  "name": "mesh-research/wordpress-ci-logon",
+  "description": "A proof-of-concept WordPress plugin for integrating with CI Logon through OIDC",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Mike Thicke",
+      "email": "thickemi@msu.edu"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org",
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MeshResearch\\CCClient\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MeshResearch\\CCClient\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9",
+    "yoast/phpunit-polyfills": "^2.0",
+    "wpackagist-plugin/buddypress": "^12.4",
+    "wpackagist-plugin/bbpress": "^2.6"
+  },
+  "scripts": {
+    "phpunit": "phpunit"
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  },
+  "extra": {
+    "installer-paths": {
+      ".lando/wordpress/wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      ".lando/wordpress/wp-content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  }
+}
