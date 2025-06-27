@@ -46,3 +46,8 @@ wp-config.php
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+/vendor/
+
+.lando/wordpress/
+node_modules/
+.DS_Store
