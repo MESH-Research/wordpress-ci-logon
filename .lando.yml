@@ -1,54 +1,57 @@
 name: wordpress-ci-logon
 recipe: lemp
 services:
-  appserver:
-    config:
-      php: .lando/php.ini
-    build_as_root:
-      - cd /app/.lando/ && ./setup-wordpress-files.sh && ./install-wp-cli.sh
-      - apt-get update && apt-get install subversion -y
-      - curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
-    run:
-      - /app/.lando/install-wordpress.sh
-      - cd /app/ && composer update
-      - /app/bin/install-wp-tests.sh test lemp lemp database:3306
-      - sed -i "s|// define( 'WP_TESTS_MULTISITE', true );|define( 'WP_TESTS_MULTISITE', true );|g" /tmp/wordpress-tests-lib/wp-tests-config.php
-      - cd /app/ && npm install
-      - cd /app/ && npm run build
-    overrides:
-      environment:
-        WP_CLI_CONFIG_PATH: /wordpress/wp-cli.yml
-  test-database:
-    type: mariadb
-    creds:
-      user: test
-      password: test
-      database: test
+    appserver:
+        config:
+            php: .lando/php.ini
+        build_as_root:
+            - cd /app/.lando/ && ./setup-wordpress-files.sh && ./install-wp-cli.sh
+            - apt-get update && apt-get install subversion -y
+            - curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt-get install -y nodejs
+        run:
+            - /app/.lando/install-wordpress.sh
+            - cd /app/ && composer update
+            - /app/bin/install-wp-tests.sh test lemp lemp database:3306
+            - sed -i "s|// define( 'WP_TESTS_MULTISITE', true );|define( 'WP_TESTS_MULTISITE', true );|g" /tmp/wordpress-tests-lib/wp-tests-config.php
+            - cd /app/ && npm install
+            - cd /app/ && npm run build
+        overrides:
+            environment:
+                WP_CLI_CONFIG_PATH: /wordpress/wp-cli.yml
+                CILOGON_CLIENT_ID: your_client_id_here
+                CILOGON_CLIENT_SECRET: your_client_secret_here
+                CILOGON_PROVIDER_URL: https://cilogon.org
+    test-database:
+        type: mariadb
+        creds:
+            user: test
+            password: test
+            database: test
 config:
-  database: mariadb
-  xdebug: debug
-  config:
-    vhosts: .lando/nginx.conf
+    database: mariadb
+    xdebug: debug
+    config:
+        vhosts: .lando/nginx.conf
 tooling:
-  wp:
-    service: appserver
-    description: Runs WP-CLI commands
-    cmd: wp --path=/app/.lando/wordpress
-  wpd:
-    service: appserver
-    description: Runs WP-CLI commands with xdebug
-    cmd: php -d xdebug.start_with_request=yes /usr/local/bin/wp --path=/app/.lando/wordpress
-  phpunit:
-    service: appserver
-    description: Runs local tests
-    dir: /app
-    cmd: vendor/bin/phpunit /app/tests
-  phpunit-debug:
-    service: appserver
-    description: Runs local tests with xdebug
-    dir: /app
-    cmd: php -d xdebug.start_with_request=yes vendor/bin/phpunit /app/tests
-  npm:
-    service: appserver
-    description: Runs npm commands
-    cmd: npm
+    wp:
+        service: appserver
+        description: Runs WP-CLI commands
+        cmd: wp --path=/app/.lando/wordpress
+    wpd:
+        service: appserver
+        description: Runs WP-CLI commands with xdebug
+        cmd: php -d xdebug.start_with_request=yes /usr/local/bin/wp --path=/app/.lando/wordpress
+    phpunit:
+        service: appserver
+        description: Runs local tests
+        dir: /app
+        cmd: vendor/bin/phpunit /app/tests
+    phpunit-debug:
+        service: appserver
+        description: Runs local tests with xdebug
+        dir: /app
+        cmd: php -d xdebug.start_with_request=yes vendor/bin/phpunit /app/tests
+    npm:
+        service: appserver
+        description: Runs npm commands
+        cmd: npm

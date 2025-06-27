@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress CI Logon Plugin">
+    <description>PHPCS configuration for WordPress CI Logon Plugin</description>
+
+    <!-- What to scan -->
+    <file>.</file>
+
+    <!-- Exclude paths -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <exclude-pattern>*/.lando/*</exclude-pattern>
+    <exclude-pattern>*/build/*</exclude-pattern>
+    <exclude-pattern>*/tests/*</exclude-pattern>
+
+    <!-- How to scan -->
+    <arg value="sp"/> <!-- Show sniff and progress -->
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+    <arg name="parallel" value="8"/>
+
+    <!-- Rules: WordPress Coding Standards - Core only for development -->
+    <rule ref="WordPress-Core">
+        <!-- Allow short array syntax -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+        <!-- Allow long array syntax too -->
+        <exclude name="Universal.Arrays.DisallowShortArraySyntax"/>
+        <!-- Don't require Yoda conditions -->
+        <exclude name="WordPress.PHP.YodaConditions"/>
+        <!-- Allow direct file access for plugin files -->
+        <exclude name="WordPress.Security.NonceVerification"/>
+        <!-- Allow array short syntax -->
+        <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+    </rule>
+
+    <!-- Text domain configuration -->
+    <rule ref="WordPress.WP.I18n">
+        <properties>
+            <property name="text_domain" type="array">
+                <element value="ci-logon"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- WordPress filename rules -->
+    <rule ref="WordPress.Files.FileName">
+        <properties>
+            <property name="strict_class_file_names" value="false"/>
+        </properties>
+    </rule>
+
+    <!-- Hook prefix configuration -->
+    <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+        <properties>
+            <property name="prefixes" type="array">
+                <element value="cilogon"/>
+                <element value="CILOGON"/>
+                <element value="MeshResearch\CILogon"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Database prefix configuration -->
+    <rule ref="WordPress.DB.DirectDatabaseQuery">
+        <properties>
+            <property name="customCacheDeleteFunctions" type="array">
+                <element value="wp_cache_delete"/>
+            </property>
+            <property name="customCacheGetFunctions" type="array">
+                <element value="wp_cache_get"/>
+            </property>
+            <property name="customCacheSetFunctions" type="array">
+                <element value="wp_cache_set"/>
+            </property>
+        </properties>
+    </rule>
+</ruleset>

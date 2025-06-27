@@ -1,59 +1,67 @@
 {
-  "name": "mesh-research/wordpress-ci-logon",
-  "description": "A proof-of-concept WordPress plugin for integrating with CI Logon through OIDC",
-  "type": "project",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Mike Thicke",
-      "email": "thickemi@msu.edu"
+    "name": "mesh-research/wordpress-ci-logon",
+    "description": "A proof-of-concept WordPress plugin for integrating with CI Logon through OIDC",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mike Thicke",
+            "email": "thickemi@msu.edu"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*",
+                "wpackagist-theme/*"
+            ]
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MeshResearch\\CILogon\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MeshResearch\\CILogon\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^12",
+        "yoast/phpunit-polyfills": "^4",
+        "php-stubs/wordpress-stubs": "^6.8",
+        "squizlabs/php_codesniffer": "^3.13",
+        "wp-coding-standards/wpcs": "^3.1",
+        "phpcompatibility/php-compatibility": "^9.3"
+    },
+    "scripts": {
+        "phpunit": "phpunit",
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf",
+        "phpcs-check": "phpcs --report=summary",
+        "phpcs-fix": "phpcbf"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.0",
+        "jumbojett/openid-connect-php": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            ".lando/wordpress/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ],
+            ".lando/wordpress/wp-content/themes/{$name}/": [
+                "type:wordpress-theme"
+            ]
+        }
     }
-  ],
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://wpackagist.org",
-      "only": [
-        "wpackagist-plugin/*",
-        "wpackagist-theme/*"
-      ]
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "MeshResearch\\CCClient\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "MeshResearch\\CCClient\\Tests\\": "tests/"
-    }
-  },
-  "require-dev": {
-    "phpunit/phpunit": "^9",
-    "yoast/phpunit-polyfills": "^2.0",
-    "wpackagist-plugin/buddypress": "^12.4",
-    "wpackagist-plugin/bbpress": "^2.6"
-  },
-  "scripts": {
-    "phpunit": "phpunit"
-  },
-  "require": {
-    "guzzlehttp/guzzle": "^7.0"
-  },
-  "config": {
-    "allow-plugins": {
-      "composer/installers": true
-    }
-  },
-  "extra": {
-    "installer-paths": {
-      ".lando/wordpress/wp-content/plugins/{$name}/": [
-        "type:wordpress-plugin"
-      ],
-      ".lando/wordpress/wp-content/themes/{$name}/": [
-        "type:wordpress-theme"
-      ]
-    }
-  }
 }
