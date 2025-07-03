@@ -17,6 +17,10 @@
                 "wpackagist-plugin/*",
                 "wpackagist-theme/*"
             ]
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/MESH-Research/OpenID-Connect-PHP"
         }
     ],
     "autoload": {
@@ -46,7 +50,7 @@
     },
     "require": {
         "guzzlehttp/guzzle": "^7.0",
-        "jumbojett/openid-connect-php": "^1.0"
+        "jumbojett/openid-connect-php": "dev-master"
     },
     "config": {
         "allow-plugins": {

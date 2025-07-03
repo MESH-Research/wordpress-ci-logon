@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df1bfad7e291907779fc222e28edf005",
+    "content-hash": "a4a118fb34dc8ce3e5f1306be848eb75",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -333,22 +333,22 @@
         },
         {
             "name": "jumbojett/openid-connect-php",
-            "version": "v1.0.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jumbojett/OpenID-Connect-PHP.git",
-                "reference": "f327e7eb0626d55ddb6abc7b7c9e6ad3af4e5d51"
+                "url": "https://github.com/MESH-Research/OpenID-Connect-PHP.git",
+                "reference": "020fc44558c23e199c4efa346ce084c6c086e6bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jumbojett/OpenID-Connect-PHP/zipball/f327e7eb0626d55ddb6abc7b7c9e6ad3af4e5d51",
-                "reference": "f327e7eb0626d55ddb6abc7b7c9e6ad3af4e5d51",
+                "url": "https://api.github.com/repos/MESH-Research/OpenID-Connect-PHP/zipball/020fc44558c23e199c4efa346ce084c6c086e6bd",
+                "reference": "020fc44558c23e199c4efa346ce084c6c086e6bd",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "ext-json": "*",
-                "php": ">=7.0",
+                "php": ">=7.1",
                 "phpseclib/phpseclib": "^3.0.7"
             },
             "require-dev": {
@@ -356,22 +356,26 @@
                 "roave/security-advisories": "dev-latest",
                 "yoast/phpunit-polyfills": "^2.0"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "classmap": [
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "archive": {
+                "exclude": [
+                    ".*"
+                ]
+            },
             "license": [
                 "Apache-2.0"
             ],
             "description": "Bare-bones OpenID Connect client",
             "support": {
-                "issues": "https://github.com/jumbojett/OpenID-Connect-PHP/issues",
-                "source": "https://github.com/jumbojett/OpenID-Connect-PHP/tree/v1.0.2"
+                "source": "https://github.com/MESH-Research/OpenID-Connect-PHP/tree/master"
             },
-            "time": "2024-09-13T07:08:11+00:00"
+            "time": "2025-06-30T16:54:47+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -492,16 +496,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "3.0.45",
+            "version": "3.0.46",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "bd81b90d5963c6b9d87de50357585375223f4dd8"
+                "reference": "56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/bd81b90d5963c6b9d87de50357585375223f4dd8",
-                "reference": "bd81b90d5963c6b9d87de50357585375223f4dd8",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6",
+                "reference": "56483a7de62a6c2a6635e42e93b8a9e25d4f0ec6",
                 "shasum": ""
             },
             "require": {
@@ -582,7 +586,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpseclib/phpseclib/issues",
-                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.45"
+                "source": "https://github.com/phpseclib/phpseclib/tree/3.0.46"
             },
             "funding": [
                 {
@@ -598,7 +602,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-22T22:54:43+00:00"
+            "time": "2025-06-26T16:29:55+00:00"
         },
         {
             "name": "psr/http-client",
@@ -3087,7 +3091,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "jumbojett/openid-connect-php": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

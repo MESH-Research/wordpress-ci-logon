@@ -14,6 +14,7 @@
         "start": "wp-scripts start --webpack-src-dir=src/blocks"
     },
     "devDependencies": {
+        "@prettier/plugin-php": "^0.22.4",
         "@types/wordpress__block-editor": "^11.5.1",
         "@wordpress/scripts": "^27.7.0"
     },
@@ -26,7 +27,10 @@
     },
     "prettier": {
         "tabWidth": 4,
-        "useTabs": false
+        "useTabs": false,
+        "plugins": [
+            "@prettier/plugin-php"
+        ]
     },
     "keywords": [],
     "author": "Mike Thicke",
